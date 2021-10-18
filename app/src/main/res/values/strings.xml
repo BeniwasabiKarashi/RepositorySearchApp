@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RepositorySearchApp</string>
+    <string name="text_input_hint">レポジトリ名を入れてアイコンをタップしてください</string>
+    <string name="search_button">検索ボタン</string>
 </resources>

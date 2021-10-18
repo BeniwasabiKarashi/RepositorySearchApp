@@ -4,7 +4,6 @@ buildscript {
         kotlin_version = "1.4.31"
         kotlin_coroutines_version = "1.4.1"
         dagger_version = "2.38.1"
-        room_version = "2.2.5"
     }
     repositories {
         google()
@@ -28,6 +27,7 @@ allprojects {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
     }
 }
 

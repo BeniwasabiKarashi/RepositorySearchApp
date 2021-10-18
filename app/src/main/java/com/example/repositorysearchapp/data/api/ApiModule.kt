@@ -5,7 +5,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
@@ -21,14 +20,13 @@ annotation class WebApi
 @InstallIn(SingletonComponent::class)
 class RepositoriesServiceModule {
     @Provides
-    fun provideRepositoriesService(@WebApi retrofit: Retrofit): RepositoriesService =
+    fun provideRepositoriesService(@WebApi retrofit: Retrofit): GitRepositoriesService =
         retrofit.create()
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
 class WebApiRetrofitModule {
-    @ExperimentalSerializationApi
     @WebApi
     @Singleton
     @Provides
@@ -42,6 +40,18 @@ class WebApiRetrofitModule {
     }
 
     companion object {
-        private const val BASE_WEB_API_URL = "https//api.github.com/"
+        private const val BASE_WEB_API_URL = "https://api.github.com/"
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+class JsonModule {
+    @Singleton
+    @Provides
+    fun provideJson(): Json {
+        return Json {
+            ignoreUnknownKeys = true
+        }
     }
 }
